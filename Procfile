@@ -1,0 +1,1 @@
+web: sh -c "php artisan optimize && php artisan migrate --force && (php artisan storage:link || true) && heroku-php-apache2 public/"
