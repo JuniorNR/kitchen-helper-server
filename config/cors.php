@@ -8,7 +8,7 @@ return [
     'allowed_origins' => [
         env('FRONTEND_URL', 'http://127.0.0.1:3000'),
         env('FRONTEND_URL_2', 'https://kitchen-helper52.netlify.app'),
-        env('FRONTEND_URL_3', 'https://kitchen-helper52.netlify.app'),
+        env('FRONTEND_URL_3', 'http://localhost:3000'),
     ],
 
     'allowed_origins_patterns' => [],
