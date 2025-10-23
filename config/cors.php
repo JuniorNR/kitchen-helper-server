@@ -6,9 +6,8 @@ return [
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
-        env('FRONTEND_URL', 'http://127.0.0.1:3000'),
-        env('FRONTEND_URL_2', 'https://kitchen-helper-production.up.railway.app'),
-        env('FRONTEND_URL_3', 'http://localhost:3000'),
+        env('FRONTEND_URL_2_PRODUCTION', 'https://kitchen-helper-production.up.railway.app'),
+        env('FRONTEND_URL_LOCAL', 'http://localhost:3000'),
     ],
 
     'allowed_origins_patterns' => [],

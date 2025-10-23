@@ -22,7 +22,7 @@ class UpdateRecipeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'sometimes|string|max:255',
+            'title' => 'sometimes|string',
             'description' => 'sometimes|nullable|string',
             'price_of_dish' => 'sometimes|numeric|min:0',
             'price_to_buy' => 'sometimes|numeric|min:0',
@@ -34,7 +34,7 @@ class UpdateRecipeRequest extends FormRequest
             'type' => 'sometimes|string|min:3|max:255',
     
             'steps' => 'sometimes|array',
-            'steps.*.title' => 'required_with:steps|string|max:255',
+            'steps.*.title' => 'required_with:steps|string',
             'steps.*.description' => 'nullable|string',
             'steps.*.order' => 'nullable|integer|min:0',
             'steps.*.duration' => 'nullable|string|max:255',

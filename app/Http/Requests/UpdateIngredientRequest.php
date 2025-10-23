@@ -14,8 +14,8 @@ class UpdateIngredientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['sometimes', 'string', 'max:255'],
-            'description' => ['sometimes', 'nullable', 'string', 'max:255'],
+            'title' => ['sometimes', 'string'],
+            'description' => ['sometimes', 'nullable', 'string'],
             'price' => ['sometimes', 'numeric', 'min:1'],
             'currency' => ['sometimes', 'string', 'max:3'],
             'unit' => ['sometimes', 'string', 'max:32'],
