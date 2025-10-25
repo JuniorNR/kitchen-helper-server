@@ -17,7 +17,9 @@ class RecipeImageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'path' => $this->faker->imageUrl(800, 600, 'food', true),
+            'is_main' => false,
+            'position' => 0,
         ];
     }
 }

@@ -1,4 +1,1 @@
-web: sh -c "php artisan migrate --force && php -d variables_order=EGPCS -S 0.0.0.0:${PORT} -t public public/index.php"
-
-# web: sh -c "php artisan migrate --force && php artisan storage:link || true && php -d variables_order=EGPCS -S 0.0.0.0:${PORT} -t public 
-# public/index.php"
+web: sh -c "php artisan migrate --force && php artisan db:seed --force && php -d variables_order=EGPCS -S 0.0.0.0:${PORT} -t public public/index.php"
