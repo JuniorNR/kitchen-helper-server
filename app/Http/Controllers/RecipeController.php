@@ -17,23 +17,65 @@ class RecipeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-			$recipes = Auth::user()
-			->recipes()
-			->with(['steps.ingredients', 'images', 'user'])->get();
+			$query = Auth::user()
+				->recipes()
+				->with(['steps.ingredients', 'images', 'user'])
+				->orderBy('created_at', 'desc');
+
+			// Если параметр page не передан — вернуть все без пагинации
+			if (!$request->has('page')) {
+				$recipes = $query->get();
+
+				return response()->json([
+					'data' => $recipes,
+					'code' => ApiCode::RECIPES_RETURNED->value
+				], 200);
+			}
+
+			$recipes = $query->paginate(6);
 
 			return response()->json([
-				'data' => $recipes,
+				'data' => $recipes->items(),
+				'pagination' => [
+					'next' => $recipes->nextPageUrl(),
+					'prev' => $recipes->previousPageUrl(),
+					'current_page' => $recipes->currentPage(),
+					'last_page' => $recipes->lastPage(),
+					'per_page' => $recipes->perPage(),
+					'total' => $recipes->total(),
+				],
 				'code' => ApiCode::RECIPES_RETURNED->value
 			], 200);
     }
 
-    public function all()
+    public function all(Request $request)
     {
-        $recipes = Recipe::with(['steps.ingredients', 'images', 'user'])->get();
+        $query = Recipe::with(['steps.ingredients', 'images', 'user'])
+            ->orderBy('created_at', 'desc');
+
+        if (!$request->has('page')) {
+            $recipes = $query->get();
+
+            return response()->json([
+                'data' => $recipes,
+                'code' => ApiCode::RECIPES_RETURNED->value
+            ], 200);
+        }
+
+        $recipes = $query->paginate(6);
+
         return response()->json([
-            'data' => $recipes,
+            'data' => $recipes->items(),
+            'pagination' => [
+                'next' => $recipes->nextPageUrl(),
+                'prev' => $recipes->previousPageUrl(),
+                'current_page' => $recipes->currentPage(),
+                'last_page' => $recipes->lastPage(),
+                'per_page' => $recipes->perPage(),
+                'total' => $recipes->total(),
+            ],
             'code' => ApiCode::RECIPES_RETURNED->value
         ], 200);
     }

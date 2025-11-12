@@ -61,7 +61,7 @@ class DatabaseSeeder extends Seeder
             ['title' => 'Помидоры черри', 'unit' => 'g', 'category' => 'veg-tomato'],
         ];
 
-        $selectedIngredientEntries = collect($ingredientPool)->shuffle()->take(20);
+        $selectedIngredientEntries = collect($ingredientPool)->take(20);
         $ingredients = collect();
         foreach ($selectedIngredientEntries as $entry) {
             $ingredients->push(
@@ -100,7 +100,7 @@ class DatabaseSeeder extends Seeder
             ['title' => 'Овощное рагу с цукини', 'type' => 'main'],
         ];
 
-        $selectedRecipes = collect($recipePool)->shuffle()->take(15);
+        $selectedRecipes = collect($recipePool)->take(15);
         $recipes = collect();
         foreach ($selectedRecipes as $rec) {
             $recipes->push(
