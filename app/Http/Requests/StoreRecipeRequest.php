@@ -32,7 +32,6 @@ class StoreRecipeRequest extends FormRequest
             'carbohydrates' => 'required|numeric|min:0',
             'ration' => 'required|string|min:3|max:255',
             'type' => 'required|string|min:3|max:255',
-            'duration' => 'required|integer|min:0',
     
             'steps' => 'nullable|array',
             'steps.*.title' => 'required_with:steps|string',
