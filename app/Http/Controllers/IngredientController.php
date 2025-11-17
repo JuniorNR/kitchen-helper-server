@@ -18,6 +18,7 @@ class IngredientController extends Controller
 
         $query = $user
             ->ingredients()
+            ->withCount('steps')
             ->orderBy('created_at', 'desc');
 
         // Фильтры
