@@ -16,11 +16,23 @@ class RealisticRecipesSeeder extends Seeder
 	 */
 	public function run(): void
 	{
+		// Support user
+		$support = User::updateOrCreate(
+			['email' => 'support@mail.ru'],
+			[
+				'name' => 'Support',
+				'role' => 'support',
+				'password' => 'support@mail.ru',
+				'email_verified_at' => now(),
+			]
+		);
+
 		$user = User::updateOrCreate(
 			['email' => 'kitchenHelper@mail.ru'],
 			[
 				'name' => 'Kitchen Helper',
-				'password' => 'kitchenHelper',
+				'role' => 'user',
+				'password' => 'kitchenHelper@mail.ru',
 				'email_verified_at' => now(),
 			]
 		);

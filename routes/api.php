@@ -16,14 +16,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::patch('/', [UserController::class, 'update']);
     });
     Route::group(['prefix' => 'recipes'], function () {
-        Route::get('/', [RecipeController::class, 'index']);
+        Route::get('/', [RecipeController::class, 'index'])->middleware('role:user');
         Route::get('/all', [RecipeController::class, 'all']);
         Route::post('/create', [RecipeController::class, 'store']);
         Route::patch('/{id}', [RecipeController::class, 'update']);
         Route::delete('/delete/{id}', [RecipeController::class, 'destroy']);
     });
     Route::group(['prefix' => 'ingredients'], function () {
-        Route::get('/', [IngredientController::class, 'index']);
+        Route::get('/', [IngredientController::class, 'index'])->middleware('role:user');;
         Route::get('/all', [IngredientController::class, 'all']);
         Route::post('/create', [IngredientController::class, 'store']);
         Route::patch('/{id}', [IngredientController::class, 'update']);
